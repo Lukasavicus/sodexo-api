@@ -1,7 +1,9 @@
+# coding=UTF-8
 from StringIO import StringIO
 import os
 import sys
 import tempfile
+import re
 
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -15,10 +17,13 @@ CAPTCHA_URL = 'https://sodexosaldocartao.com.br/saldocartao/jcaptcha.do'
 def parse_html(html):
     soup = BeautifulSoup(html)
 
-    errors = soup.find(class_='textRed')
-    if errors:
-        return errors.string.strip()
+    result = soup.find(id='balance')
 
+    if result:
+        extracted_amount = re.search('R\$\s[0-9\.]+', result.var.string)
+        return 'Seu saldo atual: ' + extracted_amount.group(0)
+
+    return 'Não foi possível verificar o saldo - possível alteração do DOM da página do Sodexo?'
 
 def get_captcha(session):
     r = session.get(CAPTCHA_URL)
