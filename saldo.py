@@ -23,7 +23,7 @@ def parse_html(html):
         extracted_amount = re.search('R\$\s[0-9\.]+', result.var.string)
         return 'Seu saldo atual: ' + extracted_amount.group(0)
 
-    return 'Não foi possível verificar o saldo - possível alteração do DOM da página do Sodexo?'
+    return 'Não foi possível verificar o saldo. Possíves razões: captcha inválido ou alteração no DOM da página'
 
 def get_captcha(session):
     r = session.get(CAPTCHA_URL)
