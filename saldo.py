@@ -19,7 +19,7 @@ def parse_html(html):
     parsed_schedule = __parse_schedule(soup)
 
     amount_output = 'Saldo: ' + parsed_amount
-    schedule_output = 'Proxima regarga: ' + parsed_schedule
+    schedule_output = 'Ultima/Proxima recarga: ' + parsed_schedule
 
     return __decorate_output(amount_output, schedule_output)
 
