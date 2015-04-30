@@ -5,7 +5,7 @@ API não oficial para extrair informações do site sodexosaldocartao.com.br
 
 ### Como usar
 
-Instale as dependencias das libs:
+Instale as dependências das libs:
 ```sh
 #ubuntu
 sudo apt-get install libjpeg-dev
